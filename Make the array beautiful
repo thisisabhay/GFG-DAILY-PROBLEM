@@ -1,0 +1,24 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution {
+  public:
+    vector<int> makeBeautiful(vector<int> arr) {
+        // code here
+        
+        vector<int> res;
+        
+        for(auto &x: arr) {
+            if(res.size() and ((res.back() < 0 and x >= 0) or (res.back() >= 0 and x < 0))) {
+                res.pop_back();
+            }
+            else res.push_back(x);
+        }
+        
+        return res;
+    }
+};
+
+
+
+BY:Abhay Gupta
