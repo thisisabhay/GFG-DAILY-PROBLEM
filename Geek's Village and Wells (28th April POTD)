@@ -1,0 +1,66 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution
+{
+   static class Node{
+        int first,second,third;
+        public Node(int first,int second,int third){
+            this.first=first;
+            this.second=second;
+            this.third=third;
+        }
+    }
+    public int[][] chefAndWells(int n,int m,char c[][])
+    {
+        int[][] vis=new int[n][m];
+        int[][] dis=new int[n][m];
+        Queue<Node> q=new LinkedList<>();
+
+        //to traverse in four directions from each well
+        int[] delrow={-1,0,0,1};
+        int[] delcol={0,-1,1,0};
+
+        //storing all wells in the grid and marking them as visited
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(c[i][j]=='W'){
+                    q.add(new Node(i,j,0));
+                    vis[i][j]=1;
+                }
+            }
+        }
+
+
+        //BFS
+        while(!q.isEmpty()){
+            Node node=q.poll();
+            int row=node.first;
+            int col=node.second;
+            int steps=node.third;
+            if(c[row][col]=='H'){
+                dis[row][col]=2*steps;
+            }
+            
+            for(int i=0;i<4;i++){
+                int nrow=row+delrow[i];
+                int ncol=col+delcol[i];
+                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && vis[nrow][ncol]==0 && c[nrow][ncol]!='N'){
+                    vis[nrow][ncol]=1;
+                    q.add(new Node(nrow,ncol,steps+1));
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(vis[i][j]==0 && c[i][j]=='H'){
+                    dis[i][j]=-1;
+                }
+            }
+        }
+        return dis;
+    }
+}
+
+
+BY:Abhay Gupta
