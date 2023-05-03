@@ -1,0 +1,24 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution{
+public:
+    bool makePalindrome(int n,vector<string> &arr){
+        unordered_map<string, int> c;
+        for (string s : arr) {
+            c[s]++;
+            reverse(s.begin(), s.end());
+            c[s]++;
+        }
+        for (auto p : c) {
+            if (p.second != 2) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+
+
+BY:Abhay Gupta
