@@ -1,0 +1,37 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution{
+public:
+int c=0;
+set<int>solve(Node* root, int k)
+{
+
+     set<int>s;
+        s.insert(root->data);
+        if(root->left){
+            set<int>l = solve(root->left,k);
+            for(auto i: l)
+                s.insert(i);
+            
+        }
+        if(root->right){
+            set<int>r = solve(root->right,k);
+            for(auto i: r)
+                s.insert(i);
+            
+        }
+        if(s.size()<=k){
+            c++;
+        }
+        return s;
+}
+    int goodSubtrees(Node *root,int k){
+    solve(root,k);
+        
+        return c;
+    }
+};
+
+
+BY:Abhay Gupta
