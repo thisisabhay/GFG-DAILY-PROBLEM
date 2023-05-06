@@ -1,0 +1,20 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution {
+    bool dfs(int i, int n, int k, int t, vector<int> &coins, vector<vector<vector<int>>> &dp) {
+        if(i == n) return false;
+        if(!k) return !t;
+        if(dp[i][k][t] != -1) return dp[i][k][t];
+        
+        bool notpick = dfs(i + 1, n, k, t, coins, dp);
+        bool pick = t - coins[i] >= 0 ? dfs(i + 1, n, k - 1, t - coins[i], coins, dp) or   dfs(i, n, k - 1, t - coins[i], coins, dp) : false;
+        
+        return dp[i][k][t] = pick  or notpick;
+    }
+  public:
+    bool makeChanges(int N, int K, int target, vector<int> &coins) {
+        vector<vector<vector<int>>> dp(N, vector<vector<int>>(K + 1, vector<int>(target + 1 , -1)));
+        return dfs(0, N, K, target, coins, dp);
+    }
+};
