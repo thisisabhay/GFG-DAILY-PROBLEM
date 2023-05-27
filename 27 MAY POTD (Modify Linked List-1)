@@ -1,0 +1,36 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution{
+    public:
+    struct Node* modifyTheList(struct Node *head)
+{
+    Node* temp = head;
+    vector<int> v;
+    while (temp != NULL) {
+        v.push_back(temp->data);
+        temp = temp->next;
+    }
+    int lo = 0, hi = v.size() - 1;
+    while (lo <= hi) {
+        int temp = v[lo];
+        v[lo] = v[hi] - v[lo];
+        v[hi] = temp;
+        lo++;
+        hi--;
+    }
+    Node* nw = new Node(v[0]);
+    Node* hd = nw;
+    for (int i = 1; i < v.size(); i++) {
+        Node* temp_nw = new Node(v[i]);
+        hd->next = temp_nw;
+        hd = temp_nw;
+    }
+    hd->next = NULL; // Set the last node's next pointer to NULL
+    return nw; // Return the modified linked list
+}
+
+};
+  
+  
+  BY:Abhay Gupta
