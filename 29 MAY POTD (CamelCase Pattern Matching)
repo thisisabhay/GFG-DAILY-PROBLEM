@@ -1,0 +1,21 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution {
+  public:
+       vector<string> CamelCase(int N, vector<string> dictionary, string pattern) {
+        vector<string>ans;
+        
+        for(auto &it: dictionary){
+            string temp;
+            for(auto &x: it){
+                if(isupper(x))temp+=x;
+            }
+            if(temp.substr(0,pattern.size()) == pattern)ans.push_back(it);
+        }
+        
+        if(ans.size() == 0)return {"-1"};
+        
+        return ans;
+    }
+};
