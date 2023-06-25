@@ -1,0 +1,27 @@
+# GFG-DAILY-PROBLEM
+
+
+class Solution
+{
+    public:
+    // #define MAX 1000
+   vector<vector<int>> uniqueRow(int M[MAX][MAX],int row,int col)
+    {
+        vector<vector<int>>f;
+        set<vector<int>>s;
+        int ss=0;
+        for(int i=0;i<row;i++){
+            vector<int>a;
+            for(int j=0;j<col;j++) a.push_back(M[i][j]);
+            s.insert(a);
+            if(ss!=s.size()){
+                f.push_back(a);
+                ss++;
+            }
+        }
+        return f;
+    }
+};
+
+
+BY:Abhay Gupta
