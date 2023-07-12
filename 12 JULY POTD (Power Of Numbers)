@@ -1,0 +1,29 @@
+# GFG-DAILY-PROBLEM
+
+
+
+class Solution{
+    public:
+    
+    long long power(int N,int R)
+    {
+         int ans = 1;
+       long long int _mod = 1000000007;
+       while(R > 0){
+           if(R&1){
+
+           ans = ((ans%_mod) * (N%_mod))%_mod; 
+
+          }
+           N = ((N%_mod)*(N%_mod))%_mod;
+           R = R>>1;
+       }
+       return ans;   
+        
+    }
+
+};
+
+
+
+BY:Abhay Gupta
