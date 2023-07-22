@@ -1,0 +1,31 @@
+# GFG-DAILY-PROBLEM
+
+
+
+class Solution
+{
+    public:
+    //Function to remove duplicates from unsorted linked list.
+   Node * removeDuplicates( Node *head) 
+    {
+     // your code goes here
+     unordered_set<int> s;
+     Node *res=new Node(head->data);
+     Node *temp=res;
+     s.insert(head->data);
+     head=head->next;
+     while(head!=NULL){
+         if(s.find(head->data)==s.end()){
+             Node *t=new Node(head->data);
+             temp->next=t;
+             temp=temp->next;
+             s.insert(head->data);
+         }
+         head=head->next;
+     }
+     return res;
+    }
+};
+
+
+BY:Abhay Gupta
