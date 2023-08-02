@@ -1,0 +1,46 @@
+# GFG-DAILY-PROBLEM
+
+
+
+class Solution {
+  public:
+   int shortestDistance(int N, int M, vector<vector<int>> A, int X, int Y) {
+        // code here
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+        vector<vector<int>> vis(N,vector<int>(M,0));
+        pq.push({0,{0,0}});
+        vis[0][0]=1;
+        int dr[]={-1,1,0,0};
+        int dc[]={0,0,-1,1};
+        
+        while(!pq.empty())
+        {
+            int dis=pq.top().first;
+            int x=pq.top().second.first;
+            int y=pq.top().second.second;
+
+            pq.pop();
+            
+            if(x==X && y==Y)
+            return dis;
+            
+            for(int i=0;i<4;i++)
+            {
+                int nx=x+dr[i];
+                int ny=y+dc[i];
+                
+                if(nx<N && nx>=0 && ny<M && ny>=0 && A[nx][ny]==1 && vis[nx][ny]==0)
+                {
+                    vis[nx][ny]=1;
+                    pq.push({dis+1,{nx,ny}});
+                }
+            }
+        }
+        return -1;
+    }
+
+
+};
+
+
+BY:Abhay Gupta
